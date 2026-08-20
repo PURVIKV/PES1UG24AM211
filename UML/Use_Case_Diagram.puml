@@ -1,0 +1,35 @@
+@startuml
+
+left to right direction
+
+actor Resident
+actor "Sustainability Coach" as Coach
+
+rectangle "Household Carbon Footprint & Target Tracker" {
+
+    usecase "Enter Monthly\nConsumption" as UC1
+    usecase "Calculate Carbon\nFootprint" as UC2
+    usecase "View Emission\nHistory" as UC3
+    usecase "Set Reduction\nTarget" as UC4
+    usecase "Track Reduction\nProgress" as UC5
+    usecase "Review Household\nProgress" as UC6
+    usecase "Generate Milestone\nNotification" as UC7
+}
+
+Resident --> UC1
+Resident --> UC3
+Resident --> UC4
+Resident --> UC5
+
+Coach --> UC6
+
+UC1 ..> UC2 : <<include>>
+
+UC7 ..> UC5 : <<extend>>
+
+UC5 ..> UC2 : <<include>>
+
+UC6 ..> UC3 : <<include>>
+UC6 ..> UC5 : <<include>>
+
+@enduml
